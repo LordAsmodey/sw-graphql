@@ -35,13 +35,13 @@ export const NavigationBar = () => {
             alt="sw-logo"
             src="./sw-logo.jpeg"
           />
-          <p className="font-bold text-inherit ml-2">ACME</p>
+          <p className="font-bold text-inherit ml-2">Star Wars</p>
         </NavbarBrand>
       </NavbarContent>
 
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
         {menuItems.map((item, i) => (
-          <NavbarItem isActive={i === 1}>
+          <NavbarItem key={item} isActive={i === 1}>
             <Link color={i === 1 ? undefined : 'foreground'} href="#">
               {item}
             </Link>
@@ -66,7 +66,7 @@ export const NavigationBar = () => {
       </NavbarContent>
       <NavbarMenu className="dark">
         {menuItems.map((item, i) => (
-          <NavbarMenuItem key={`${i}-${i}`}>
+          <NavbarMenuItem key={item}>
             <Link
               color={
                 i === 1 ? undefined : 'foreground'
