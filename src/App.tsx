@@ -1,5 +1,5 @@
 import {gql, useQuery} from "@apollo/client";
-import {User} from "@nextui-org/react";
+import {NavigationBar} from "./components/NavigationBar.tsx";
 
 const GET_FILMS = gql`
     query Query {
@@ -34,27 +34,7 @@ function App() {
   console.log(data)
   return (
     <div className="p-4 flex justify-around items-center">
-      <User
-        name="Jane Doe"
-        description="Product Designer"
-        avatarProps={{
-          src: "https://i.pravatar.cc/150?u=a04258114e29026702d"
-        }}
-      />
-      <User
-        name="Jane Doe"
-        description="Product Designer"
-        avatarProps={{
-          src: "https://i.pravatar.cc/150?u=a04258114e29026702d"
-        }}
-      />
-      <User
-        name="Jane Doe"
-        description="Product Designer"
-        avatarProps={{
-          src: "https://i.pravatar.cc/150?u=a04258114e29026702d"
-        }}
-      />
+      <NavigationBar />
     </div>
   )
 }
