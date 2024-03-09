@@ -1,21 +1,11 @@
 import {Table, TableBody, TableCell, TableColumn, TableHeader, TableRow} from "@nextui-org/react";
 import {useQuery} from "@apollo/client";
+import {GET_FILMS} from "../graphql/queries/getFilms.ts";
 import {OverlaySpinner} from "./OverlaySpinner.tsx";
-import {graphql} from "../gql-generated";
 
-const FILMS = graphql(`query Films {
-    allFilms { 
-        films {
-            title
-            director
-            releaseDate
-        }
-    }
-}`);
 
 export const MoviesList = () => {
-  const { data: allFilms, loading, error } = useQuery(FILMS);
-  console.log(allFilms?.allFilms?.films)
+  const { data: allFilms, loading, error } = useQuery(GET_FILMS);
   const films = allFilms?.allFilms?.films || [];
 
   return (

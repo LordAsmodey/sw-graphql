@@ -12,14 +12,13 @@ import {
 import {SearchIcon} from "./icons/SearchIcon.tsx";
 import {useState} from "react";
 
-const menuItems = [
-  "Movies",
-  "Planets",
-  "Characters",
-  "Ships",
-];
+type Props = {
+  menuItems: string[];
+  activeTab: string;
+  setActiveTab: (tab: string) => void;
+}
 
-export const NavigationBar = () => {
+export const NavigationBar = ({menuItems, activeTab, setActiveTab}: Props) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   return (
     <Navbar onMenuOpenChange={setIsMenuOpen}>
@@ -40,13 +39,16 @@ export const NavigationBar = () => {
       </NavbarContent>
 
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
-        {menuItems.map((item, i) => (
-          <NavbarItem key={item} isActive={i === 1}>
-            <Link color={i === 1 ? undefined : 'foreground'} href="#">
-              {item}
-            </Link>
-          </NavbarItem>
-        ))}
+        {menuItems.map((item) => {
+          const linkColor = item === activeTab ? undefined : 'foreground';
+          return (
+            <NavbarItem key={item} isActive={item === activeTab}>
+              <Link color={linkColor} href="#" onPress={() => setActiveTab(item)}>
+                {item}
+              </Link>
+            </NavbarItem>
+          )
+        })}
       </NavbarContent>
       <NavbarContent justify="end">
         <NavbarItem>
@@ -65,20 +67,16 @@ export const NavigationBar = () => {
         </NavbarItem>
       </NavbarContent>
       <NavbarMenu className="dark">
-        {menuItems.map((item, i) => (
-          <NavbarMenuItem key={item}>
-            <Link
-              color={
-                i === 1 ? undefined : 'foreground'
-              }
-              className="w-full"
-              href="#"
-              size="lg"
-            >
-              {item}
-            </Link>
-          </NavbarMenuItem>
-        ))}
+        {menuItems.map((item) => {
+          const linkColor = item === activeTab ? undefined : 'foreground'
+          return (
+            <NavbarMenuItem key={item}>
+              <Link color={linkColor} className="w-full" href="#" size="lg" onPress={() => setActiveTab(item)}>
+                {item}
+              </Link>
+            </NavbarMenuItem>
+          )
+        })}
       </NavbarMenu>
     </Navbar>
   );
