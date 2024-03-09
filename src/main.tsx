@@ -19,8 +19,11 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <ApolloProvider client={client}>
       <NextUIProvider>
-        <App />
+        <main className="dark text-foreground bg-background h-dvh">
+          <App/>
+        </main>
       </NextUIProvider>
     </ApolloProvider>
-  </React.StrictMode>,
+  </React.StrictMode>
+,
 )

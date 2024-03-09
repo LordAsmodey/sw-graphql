@@ -1,62 +1,26 @@
-import {gql, useQuery} from "@apollo/client";
-import {User} from "@nextui-org/react";
+import {NavigationBar} from "./components/NavigationBar.tsx";
+import {Divider} from "@nextui-org/react";
+import {MoviesList} from "./components/MoviesList";
+import {useState} from "react";
+import {PlanetsList} from "./components/PlanetsList.tsx";
 
-const GET_FILMS = gql`
-    query Query {
-        allFilms {
-            films {
-                title
-                planetConnection {
-                    planets {
-                        name
-                        population
-                    }
-                }
-                director
-                releaseDate
-                producers
-                speciesConnection {
-                    species {
-                        name
-                        classification
-                        homeworld {
-                            name
-                        }
-                    }
-                }
-            }
-        }
-    }
-`;
+const menuItems = [
+    "Movies",
+    "Planets",
+    "Characters",
+    "Ships",
+];
 
 function App() {
-  const { data } = useQuery(GET_FILMS);
-  console.log(data)
-  return (
-    <div className="p-4 flex justify-around items-center">
-      <User
-        name="Jane Doe"
-        description="Product Designer"
-        avatarProps={{
-          src: "https://i.pravatar.cc/150?u=a04258114e29026702d"
-        }}
-      />
-      <User
-        name="Jane Doe"
-        description="Product Designer"
-        avatarProps={{
-          src: "https://i.pravatar.cc/150?u=a04258114e29026702d"
-        }}
-      />
-      <User
-        name="Jane Doe"
-        description="Product Designer"
-        avatarProps={{
-          src: "https://i.pravatar.cc/150?u=a04258114e29026702d"
-        }}
-      />
-    </div>
-  )
+    const [activeTab, setActiveTab] = useState(menuItems[0]);
+    return (
+      <div className="p-4 flex-row justify-around items-center">
+        <NavigationBar menuItems={menuItems} activeTab={activeTab} setActiveTab={setActiveTab} />
+        <Divider className="my-4" />
+          {activeTab === menuItems[0] && <MoviesList />}
+          {activeTab === menuItems[1] && <PlanetsList />}
+      </div>
+    )
 }
 
 export default App
