@@ -14,6 +14,7 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  */
 const documents = {
     "query Films {\n    allFilms {\n        films {\n            title\n            director\n            releaseDate \n        }\n    }\n}": types.FilmsDocument,
+    "query Planets {\n    allPlanets {\n        planets {\n            name\n            population\n            diameter\n            gravity\n            rotationPeriod\n\n        }\n    }\n}": types.PlanetsDocument,
 };
 
 /**
@@ -34,6 +35,10 @@ export function graphql(source: string): unknown;
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "query Films {\n    allFilms {\n        films {\n            title\n            director\n            releaseDate \n        }\n    }\n}"): (typeof documents)["query Films {\n    allFilms {\n        films {\n            title\n            director\n            releaseDate \n        }\n    }\n}"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "query Planets {\n    allPlanets {\n        planets {\n            name\n            population\n            diameter\n            gravity\n            rotationPeriod\n\n        }\n    }\n}"): (typeof documents)["query Planets {\n    allPlanets {\n        planets {\n            name\n            population\n            diameter\n            gravity\n            rotationPeriod\n\n        }\n    }\n}"];
 
 export function graphql(source: string) {
   return (documents as any)[source] ?? {};

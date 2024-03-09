@@ -17,7 +17,7 @@ export const MoviesList = () => {
           <TableColumn>Premiere</TableColumn>
           <TableColumn>Director</TableColumn>
         </TableHeader>
-        <TableBody emptyContent={"Loading data, please wait."}>
+        <TableBody emptyContent={"Loading data, please wait..."}>
           {films.map(film => (
             <TableRow key={film?.title}>
               <TableCell>{film?.title}</TableCell>

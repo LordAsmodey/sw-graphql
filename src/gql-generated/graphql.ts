@@ -1309,5 +1309,11 @@ export type FilmsQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type FilmsQuery = { __typename?: 'Root', allFilms?: { __typename?: 'FilmsConnection', films?: Array<{ __typename?: 'Film', title?: string | null, director?: string | null, releaseDate?: string | null } | null> | null } | null };
 
+export type PlanetsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type PlanetsQuery = { __typename?: 'Root', allPlanets?: { __typename?: 'PlanetsConnection', planets?: Array<{ __typename?: 'Planet', name?: string | null, population?: number | null, diameter?: number | null, gravity?: string | null, rotationPeriod?: number | null } | null> | null } | null };
+
 
 export const FilmsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"Films"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"allFilms"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"films"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"director"}},{"kind":"Field","name":{"kind":"Name","value":"releaseDate"}}]}}]}}]}}]} as unknown as DocumentNode<FilmsQuery, FilmsQueryVariables>;
+export const PlanetsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"Planets"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"allPlanets"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"planets"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"population"}},{"kind":"Field","name":{"kind":"Name","value":"diameter"}},{"kind":"Field","name":{"kind":"Name","value":"gravity"}},{"kind":"Field","name":{"kind":"Name","value":"rotationPeriod"}}]}}]}}]}}]} as unknown as DocumentNode<PlanetsQuery, PlanetsQueryVariables>;
