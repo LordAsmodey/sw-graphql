@@ -8,7 +8,8 @@
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "gql-w": "yarn graphql-codegen --watch"
+    "gql-w": "yarn graphql-codegen --watch",
+    "deploy": "yarn run build && gh-pages -d dist"
   },
   "dependencies": {
     "@apollo/client": "^3.9.6",
