@@ -45,6 +45,7 @@ export const PlanetsList = ({searchTerm}: {searchTerm: string}) => {
 
   return (
     <Table
+      isStriped
       aria-label="SW Planets"
       sortDescriptor={sortDescriptor}
       onSortChange={(newSortDescriptor) => setSortDescriptor(newSortDescriptor)}

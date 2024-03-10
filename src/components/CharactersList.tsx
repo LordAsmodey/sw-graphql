@@ -40,6 +40,7 @@ export const CharactersList = ({searchTerm}: {searchTerm: string}) => {
     <div className="flex flex-col gap-3">
       {(loading || error) && <OverlaySpinner />}
       <Table
+        isStriped
         selectionMode="single"
         defaultSelectedKeys={["2"]}
         aria-label="SW People"

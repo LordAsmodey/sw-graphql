@@ -22,7 +22,7 @@ export const MoviesList = ({searchTerm}: {searchTerm: string}) => {
   return (
     <>
     {(loading || error) && <OverlaySpinner />}
-      <Table removeWrapper aria-label="SW movies">
+      <Table isStriped aria-label="SW movies">
         <TableHeader>
           <TableColumn>Title</TableColumn>
           <TableColumn>Premiere</TableColumn>
