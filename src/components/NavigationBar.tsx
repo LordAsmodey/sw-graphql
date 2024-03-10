@@ -16,10 +16,19 @@ type Props = {
   menuItems: string[];
   activeTab: string;
   setActiveTab: (tab: string) => void;
+  searchTerm: string;
+  setSearchTerm: (value: string) => void;
+
 }
 
-export const NavigationBar = ({menuItems, activeTab, setActiveTab}: Props) => {
+export const NavigationBar = ({menuItems, activeTab, setActiveTab, searchTerm, setSearchTerm}: Props) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const changeTabHandler = (tab: string) => {
+   if (activeTab !== tab) {
+     setActiveTab(tab);
+     setSearchTerm('');
+   }
+  }
   return (
     <Navbar onMenuOpenChange={setIsMenuOpen}>
       <NavbarContent>
@@ -43,7 +52,7 @@ export const NavigationBar = ({menuItems, activeTab, setActiveTab}: Props) => {
           const linkColor = item === activeTab ? undefined : 'foreground';
           return (
             <NavbarItem key={item} isActive={item === activeTab}>
-              <Link color={linkColor} href="#" onPress={() => setActiveTab(item)}>
+              <Link color={linkColor} href="#" onPress={() => changeTabHandler(item)}>
                 {item}
               </Link>
             </NavbarItem>
@@ -53,6 +62,8 @@ export const NavigationBar = ({menuItems, activeTab, setActiveTab}: Props) => {
       <NavbarContent justify="end">
         <NavbarItem>
           <Input
+            onChange={(event) => setSearchTerm(event.target.value)}
+            value={searchTerm}
             classNames={{
               base: "max-w-full sm:max-w-[10rem] h-10",
               mainWrapper: "h-full",

@@ -2,17 +2,26 @@ import {useQuery} from "@apollo/client";
 import {getKeyValue, Spinner, Table, TableBody, TableCell, TableColumn, TableHeader, TableRow} from "@nextui-org/react";
 import {useMemo, useState} from "react";
 import {SortDescriptor} from "@react-types/shared/src/collections";
-import {Planet} from "../gql-generated/graphql.ts";
+import {Planet, PlanetsQuery} from "../gql-generated/graphql.ts";
 import {GET_PLANETS} from "../graphql/queries/getPlanets.ts";
-export const PlanetsList = () => {
+export const PlanetsList = ({searchTerm}: {searchTerm: string}) => {
   const [sortDescriptor, setSortDescriptor] = useState<SortDescriptor>({ column: '', direction: 'ascending' });
-  const {data, loading} = useQuery(GET_PLANETS);
-  const planets = data?.allPlanets?.planets as Planet[];
+  const {data, loading} = useQuery<PlanetsQuery>(GET_PLANETS);
+
+  const foundPlanets = useMemo(() => {
+    const planets = data?.allPlanets?.planets as Planet[];
+    return planets?.filter(planet => {
+      if (planet.name) {
+        return planet.name.toLowerCase().includes(searchTerm.toLowerCase());
+      }
+      return false;
+    })
+  }, [data?.allPlanets?.planets, searchTerm]);
 
   const sortedData = useMemo(() => {
     if (!data) return [];
-    return sortData(planets, sortDescriptor);
-  }, [data, planets, sortDescriptor]);
+    return sortData(foundPlanets, sortDescriptor);
+  }, [data, foundPlanets, sortDescriptor]);
 
 
   function sortData(data: Planet[], sortDescriptor: SortDescriptor) {
@@ -36,7 +45,7 @@ export const PlanetsList = () => {
 
   return (
     <Table
-      aria-label="Example table with client side sorting"
+      aria-label="SW Planets"
       sortDescriptor={sortDescriptor}
       onSortChange={(newSortDescriptor) => setSortDescriptor(newSortDescriptor)}
       classNames={{
