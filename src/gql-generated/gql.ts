@@ -14,6 +14,7 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  */
 const documents = {
     "query People {\n    allPeople {\n        people {\n            id\n            name\n            gender\n            skinColor\n            eyeColor\n            homeworld {\n                name\n            }\n        }\n    }\n}": types.PeopleDocument,
+    "query GetCharacter($id: ID!) {\n    person(id: $id) {\n        id\n        name\n        birthYear\n        eyeColor\n        gender\n        hairColor\n        height\n        mass\n        skinColor\n        homeworld {\n            id\n            name\n        }\n        filmConnection {\n            films {\n                id\n                title\n            }\n        }\n    }\n}\n": types.GetCharacterDocument,
     "query Films {\n    allFilms {\n        films {\n            title\n            director\n            releaseDate \n        }\n    }\n}": types.FilmsDocument,
     "query Planets {\n    allPlanets {\n        planets {\n            name\n            population\n            diameter\n            gravity\n            rotationPeriod\n\n        }\n    }\n}": types.PlanetsDocument,
 };
@@ -36,6 +37,10 @@ export function graphql(source: string): unknown;
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "query People {\n    allPeople {\n        people {\n            id\n            name\n            gender\n            skinColor\n            eyeColor\n            homeworld {\n                name\n            }\n        }\n    }\n}"): (typeof documents)["query People {\n    allPeople {\n        people {\n            id\n            name\n            gender\n            skinColor\n            eyeColor\n            homeworld {\n                name\n            }\n        }\n    }\n}"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "query GetCharacter($id: ID!) {\n    person(id: $id) {\n        id\n        name\n        birthYear\n        eyeColor\n        gender\n        hairColor\n        height\n        mass\n        skinColor\n        homeworld {\n            id\n            name\n        }\n        filmConnection {\n            films {\n                id\n                title\n            }\n        }\n    }\n}\n"): (typeof documents)["query GetCharacter($id: ID!) {\n    person(id: $id) {\n        id\n        name\n        birthYear\n        eyeColor\n        gender\n        hairColor\n        height\n        mass\n        skinColor\n        homeworld {\n            id\n            name\n        }\n        filmConnection {\n            films {\n                id\n                title\n            }\n        }\n    }\n}\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

@@ -3,10 +3,11 @@ import {useQuery} from "@apollo/client";
 import {GET_FILMS} from "../graphql/queries/getFilms.ts";
 import {OverlaySpinner} from "./OverlaySpinner.tsx";
 import {useMemo} from "react";
+import {FilmsQuery} from "../gql-generated/graphql.ts";
 
 
 export const MoviesList = ({searchTerm}: {searchTerm: string}) => {
-  const { data: allFilms, loading, error } = useQuery(GET_FILMS);
+  const { data: allFilms, loading, error } = useQuery<FilmsQuery>(GET_FILMS);
 
   const foundFilms = useMemo(() => {
     const films = allFilms?.allFilms?.films || [];
